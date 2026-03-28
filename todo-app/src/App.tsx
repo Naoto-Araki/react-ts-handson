@@ -1,17 +1,29 @@
 import { useState } from 'react'
 import './App.css'
 
+type Task = {
+  id: number;
+  title: string;
+  completed: boolean;
+};
+
 function App() {
-  const [tasks, setTasks] = useState<string[]>([])
-  const [inputValue, setInputValue] = useState('')
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [inputValue, setInputValue] = useState('');
 
   const addTask = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (inputValue.trim() !== '') {
-      setTasks([...tasks, inputValue])
-      setInputValue('')
+      const newTask: Task = {
+        id: Date.now(),
+        title: inputValue,
+        completed: false
+      };
+
+      setTasks([...tasks, newTask]);
+      setInputValue('');
     }
-  }
+  };
 
   return (
     <div className="App">
@@ -28,8 +40,10 @@ function App() {
         <h2>タスク一覧</h2>
         <p>{tasks.length}件のタスクがあります</p>
         <ul>
-          {tasks.map((task, index) => (
-            <li key={index}>{task}</li>
+          {tasks.map((task) => (
+            <li key={task.id}>
+              {task.title}
+            </li>
           ))}
         </ul>
       </div>
