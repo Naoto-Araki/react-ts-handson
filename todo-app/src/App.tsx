@@ -12,7 +12,7 @@ function App() {
   const [inputValue, setInputValue] = useState('');
 
   const addTask = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault(); // フォーム送信時のページリロードを防ぐ
     if (inputValue.trim() !== '') {
       const newTask: Task = {
         id: Date.now(),
