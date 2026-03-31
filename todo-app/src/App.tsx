@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import TodoForm from './components/TodoForm';
+import TaskList from './components/TaskList';
 
 type Task = {
   id: number;
@@ -28,25 +30,8 @@ function App() {
   return (
     <div className="App">
       <h1>Todo App</h1>
-      <form onSubmit={addTask}>
-        <input 
-          type="text"
-          placeholder="タスクを入力"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-      </form>
-      <div className="task-list">
-        <h2>タスク一覧</h2>
-        <p>{tasks.length}件のタスクがあります</p>
-        <ul>
-          {tasks.map((task) => (
-            <li key={task.id}>
-              {task.title}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <TodoForm addTask={addTask} inputValue={inputValue} setInputValue={setInputValue} />
+      <TaskList tasks={tasks} />
     </div>
 
   )
