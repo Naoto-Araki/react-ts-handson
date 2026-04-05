@@ -116,6 +116,70 @@
   box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.12);
 }
 
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.task-item.is-completed {
+  opacity: 0.72;
+}
+
+.task-item.is-completed::before {
+  background: linear-gradient(135deg, #64748b, #475569);
+  box-shadow: 0 0 0 6px rgba(100, 116, 139, 0.14);
+}
+
+.task-item__title {
+  flex: 1;
+  word-break: break-word;
+}
+
+.task-item.is-completed .task-item__title {
+  text-decoration: line-through;
+}
+
+.task-item__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.task-item__actions button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    opacity 160ms ease;
+}
+
+.task-item__actions button:hover {
+  transform: translateY(-1px);
+}
+
+.task-item__actions button:active {
+  transform: translateY(0);
+}
+
+.task-item__actions button:focus-visible {
+  outline: 3px solid rgba(34, 197, 94, 0.22);
+  outline-offset: 2px;
+}
+
+.task-item__actions .task-item__delete {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
 .task-list ul:empty::after {
   content: 'まだタスクはありません';
   display: block;
@@ -151,6 +215,16 @@
 
   .task-list li {
     padding-left: 2.7rem;
+  }
+
+  .task-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .task-item__actions {
+    width: 100%;
+    justify-content: flex-start;
   }
 }
 
