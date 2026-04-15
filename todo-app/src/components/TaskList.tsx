@@ -8,10 +8,11 @@ type TaskListProps = {
 };
 
 function TaskList({ tasks, onToggleTask, onDeleteTask }: TaskListProps) {
+  const completedCount = tasks.filter((task) => task.completed).length;
   return (
     <div className="task-list">
       <h2>タスク一覧</h2>
-      <p>{tasks.length}件のタスクがあります</p>
+      <p>{tasks.length}件のタスクがあります ({completedCount}件完了)</p>
       <ul>
         {tasks.map((task) => (
           <TaskItem
